@@ -6,9 +6,9 @@ if (UNIX)
 endif ()
 
 # Define target name
-set (TARGET_NAME Tests)
+set (TARGET_NAME minitests)
 
-add_executable(Tests main.cpp)
+add_executable(minitests main.cpp)
 
 #needs some wrangling to get urho source to work
 add_definitions(-DMINI_URHO -DURHO3D_LOGGING -DURHO3D_IS_BUILDING)
@@ -18,15 +18,15 @@ include_directories("../Source")
 include_directories("./googletest/include" "./googletest")
 
 #link the lib
-target_link_libraries(Tests miniclib)
+target_link_libraries(minitests miniclib)
 
 #change linker settings on windows
 if (MSVC)
-    target_link_libraries(Tests winmm.lib)
+    target_link_libraries(minitests winmm.lib)
     SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} /MD")
     SET(CMAKE_CXX_FLAGS_DEBUG "${CMAKE_CXX_FLAGS_DEBUG} /MDd")
 endif()
 
 if (UNIX)
-    target_link_libraries (Tests ${CMAKE_THREAD_LIBS_INIT})
+    target_link_libraries (minitests ${CMAKE_THREAD_LIBS_INIT})
 endif ()
